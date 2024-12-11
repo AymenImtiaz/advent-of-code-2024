@@ -83,7 +83,7 @@ const globalXs = new Map();
 const globalYs = new Map();
 
 rules.split('\n').forEach( rule => {
-	const [ X, Y ] = rule.trim().split(/\|/);
+	const [ X, Y ] = rule.trim().split('|');
 
 	if ( !globalYs.has( X ) ) {
 		globalYs.set( X, new Set() );
@@ -101,7 +101,7 @@ let sum = 0;
 updates.split('\n').forEach( update => {
 	let printable = true;
 
-	const pages = update.trim().split(/,/);
+	const pages = update.trim().split(',');
 	pages.forEach( ( page, index ) => {
 		const localXs = pages.slice( 0, index );
 		const localYs = pages.slice( index + 1 );
