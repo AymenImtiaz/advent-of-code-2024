@@ -106,9 +106,9 @@ updates.split('\n').forEach( update => {
 		const localXs = pages.slice( 0, i );
 		const localYs = pages.slice( i + 1 );
 
-		if( localXs.some( localX => globalYs.get( pages[i] ).has( localX ) ) 
+		if( localXs.some( localX => globalYs.get( pages[i] )?.has( localX ) ) 
 			|| 
-			localYs.some( localY => globalXs.get( pages[i] ).has( localY ) ) ) {
+			localYs.some( localY => globalXs.get( pages[i] )?.has( localY ) ) ) {
 				printable = false;
 				break;
 		}
