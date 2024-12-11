@@ -99,22 +99,16 @@ rules.split('\n').forEach( rule => {
 let sum = 0;
 
 updates.split('\n').forEach( update => {
-
 	let printable = true;
 
 	const pages = update.trim().split(/,/);
 	pages.forEach( ( page, index ) => {
-
 		const localXs = pages.slice( 0, index );
 		const localYs = pages.slice( index + 1 );
 
-		if( localXs.some( localX => globalYs.get( page )?.has( localX ) ) 
+		if( localXs.some( localX => globalYs.get( page ).has( localX ) ) 
 			|| 
-			localYs.some( localY => globalXs.get( page )?.has( localY ) ) 
-			|| 
-			( localXs.length > 0 && localXs.every( localX => ! globalXs.get( page )?.has( localX ) ) )
-			||
-			( localYs.length > 0 && localYs.every( localY => ! globalYs.get( page )?.has( localY ) ) ) ) {
+			localYs.some( localY => globalXs.get( page ).has( localY ) ) ) {
 				printable = false;
 				return;
 		}
@@ -123,7 +117,6 @@ updates.split('\n').forEach( update => {
 	if( printable ) {
 		sum += Number( pages[ Math.floor( pages.length / 2 ) ] );
 	}
-	
 });
 
 console.log('sum: ', sum);
