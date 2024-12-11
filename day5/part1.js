@@ -102,17 +102,17 @@ updates.split('\n').forEach( update => {
 	let printable = true;
 
 	const pages = update.trim().split(',');
-	pages.forEach( ( page, index ) => {
-		const localXs = pages.slice( 0, index );
-		const localYs = pages.slice( index + 1 );
+	for( let i = 0; i < pages.length; i++ ) {
+		const localXs = pages.slice( 0, i );
+		const localYs = pages.slice( i + 1 );
 
-		if( localXs.some( localX => globalYs.get( page ).has( localX ) ) 
+		if( localXs.some( localX => globalYs.get( pages[i] ).has( localX ) ) 
 			|| 
-			localYs.some( localY => globalXs.get( page ).has( localY ) ) ) {
+			localYs.some( localY => globalXs.get( pages[i] ).has( localY ) ) ) {
 				printable = false;
-				return;
+				break;
 		}
-	});
+	}
 
 	if( printable ) {
 		sum += Number( pages[ Math.floor( pages.length / 2 ) ] );
